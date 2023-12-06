@@ -18,7 +18,7 @@
 
 # 📖 About This Project <a name="about-project"></a>
 
-> GitHub Profiles A website built with HTML, SCSS, and TypeScript, utilizing the GitHub API and Axios for seamless data retrieval. Linters are employed to maintain clean code. Explore the live demo to search for any GitHub user.
+> Notes-App is a website built with HTML, SCSS, and TypeScript, utilizing linters to overcome code errors and maintain clean code. For more information, check out the live demo.
 
 # Sample Of Website <a name="Sample-Of-Website"></a>
 
