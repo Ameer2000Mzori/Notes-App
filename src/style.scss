@@ -3,10 +3,10 @@
 $fontOne: "Roboto", sans-serif;
 $fontTwo: "Kenia", sans-serif;
 
-$colorOne: #776b5d;
-$colorTwo: #b0a695;
-$colorThree: #ebe3d5;
-$colorFour: #f3eeea;
+$colorOne: #6499e9;
+$colorTwo: #b4bdff;
+$colorThree: #a6f6ff;
+$colorFour: #befff7;
 
 body {
   padding: 0;
@@ -20,7 +20,7 @@ body {
   align-items: center;
   justify-content: space-evenly;
   height: 100vh;
-  background-color: #776b5d;
+  background-color: #9eddff;
 
   .head-Wrap {
     height: 95%;
@@ -47,6 +47,7 @@ body {
         padding: 8px 30px;
         color: $colorThree;
         transition: all 100ms ease-in-out;
+        cursor: pointer;
       }
 
       .add-Note:hover {
@@ -59,6 +60,97 @@ body {
         background-color: $colorOne;
         border: solid $colorThree 2px;
         color: $colorFour;
+      }
+    }
+
+    .notes-Wrap {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: start;
+      gap: 15px;
+      height: 95%;
+      border-radius: 15px;
+
+      .note-Card {
+        display: flex;
+        flex-direction: column;
+        height: 250px;
+        width: 250px;
+        border-radius: 22px;
+        margin: 15px;
+        background-color: $colorOne;
+        color: aliceblue;
+        font-family: $fontOne;
+        font-size: 10px;
+        border: solid $colorThree 5px;
+
+        .upper-Note-Side {
+          display: flex;
+          flex-direction: row;
+          justify-content: end;
+          text-align: center;
+          align-items: center;
+          padding: 5px;
+          border-radius: 15px 15px 0 0;
+          gap: 10px;
+          background-color: $colorThree;
+          height: 20%;
+
+          button {
+            background-color: $colorOne;
+            border-radius: 10px 10px 0 0;
+            padding: 5px;
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: solid whitesmoke 2px;
+
+            i {
+              color: $colorFour;
+            }
+          }
+
+          button:hover {
+            background-color: $colorFour;
+            color: $colorOne;
+            border: solid $colorOne 2px;
+
+            i {
+              color: red;
+            }
+          }
+
+          button:active {
+            background-color: $colorOne;
+            color: $colorFour;
+            border: solid whitesmoke 2px;
+
+            i {
+              color: $colorFour;
+            }
+          }
+        }
+
+        .note-Text-Area {
+          text-align: start;
+          height: 80%;
+          padding: 5px;
+          border-radius: 0 0 15px 15px;
+          resize: none;
+          border: none;
+          background-color: $colorOne;
+          color: whitesmoke;
+          font-size: 15px;
+          font-family: $fontOne;
+          font-weight: 600;
+          outline: none;
+        }
       }
     }
   }
