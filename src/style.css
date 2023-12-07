@@ -21,6 +21,7 @@ body {
   background-color: #b4bdff;
   padding: 5px;
   border-radius: 15px;
+  overflow-x: auto;
 }
 
 .header .head-Wrap .button-Wrap {
@@ -62,9 +63,11 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: start;
-  gap: 15px;
+  justify-content: start;
+  top: 0;
+  gap: 5px;
   height: 95%;
-  border-radius: 15px;
+  border-radius: 0 0 15px 15px;
 }
 
 .header .head-Wrap .notes-Wrap .note-Card {
@@ -73,7 +76,7 @@ body {
   height: 250px;
   width: 250px;
   border-radius: 22px;
-  margin: 15px;
+  margin: 5px;
   background-color: #6499e9;
   color: aliceblue;
   font-family: "Roboto", sans-serif;

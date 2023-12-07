@@ -28,6 +28,7 @@ body {
     background-color: $colorTwo;
     padding: 5px;
     border-radius: 15px;
+    overflow-x: auto;
 
     .button-Wrap {
       height: 5%;
@@ -68,9 +69,11 @@ body {
       flex-direction: row;
       flex-wrap: wrap;
       align-items: start;
-      gap: 15px;
+      justify-content: start;
+      top: 0;
+      gap: 5px;
       height: 95%;
-      border-radius: 15px;
+      border-radius: 0 0 15px 15px;
 
       .note-Card {
         display: flex;
@@ -78,7 +81,7 @@ body {
         height: 250px;
         width: 250px;
         border-radius: 22px;
-        margin: 15px;
+        margin: 5px;
         background-color: $colorOne;
         color: aliceblue;
         font-family: $fontOne;
