@@ -10,4 +10,48 @@ body {
   flex-direction: column;
   text-align: center;
   align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  background-color: #776b5d;
+}
+
+.header .head-Wrap {
+  height: 95%;
+  width: 95%;
+  background-color: #b0a695;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.header .head-Wrap .button-Wrap {
+  height: 5%;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: end;
+}
+
+.header .head-Wrap .button-Wrap .add-Note {
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  background-color: #776b5d;
+  border: solid #ebe3d5 2px;
+  border-radius: 5px;
+  padding: 8px 30px;
+  color: #ebe3d5;
+  transition: all 100ms ease-in-out;
+}
+
+.header .head-Wrap .button-Wrap .add-Note:hover {
+  background-color: #f3eeea;
+  color: #776b5d;
+  border: solid #776b5d 2px;
+}
+
+.header .head-Wrap .button-Wrap .add-Note:active {
+  background-color: #776b5d;
+  border: solid #ebe3d5 2px;
+  color: #f3eeea;
 }

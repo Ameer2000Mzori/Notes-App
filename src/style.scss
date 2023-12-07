@@ -3,6 +3,11 @@
 $fontOne: "Roboto", sans-serif;
 $fontTwo: "Kenia", sans-serif;
 
+$colorOne: #776b5d;
+$colorTwo: #b0a695;
+$colorThree: #ebe3d5;
+$colorFour: #f3eeea;
+
 body {
   padding: 0;
   margin: 0;
@@ -13,4 +18,48 @@ body {
   flex-direction: column;
   text-align: center;
   align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  background-color: #776b5d;
+
+  .head-Wrap {
+    height: 95%;
+    width: 95%;
+    background-color: $colorTwo;
+    padding: 5px;
+    border-radius: 15px;
+
+    .button-Wrap {
+      height: 5%;
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+      align-items: center;
+      justify-content: end;
+
+      .add-Note {
+        font-weight: 600;
+        font-family: $fontOne;
+        font-size: 13px;
+        background-color: $colorOne;
+        border: solid $colorThree 2px;
+        border-radius: 5px;
+        padding: 8px 30px;
+        color: $colorThree;
+        transition: all 100ms ease-in-out;
+      }
+
+      .add-Note:hover {
+        background-color: $colorFour;
+        color: $colorOne;
+        border: solid $colorOne 2px;
+      }
+
+      .add-Note:active {
+        background-color: $colorOne;
+        border: solid $colorThree 2px;
+        color: $colorFour;
+      }
+    }
+  }
 }
