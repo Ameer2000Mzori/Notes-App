@@ -156,5 +156,19 @@ body {
         }
       }
     }
+
+    @media screen and (max-width: 769px) {
+      .notes-Wrap {
+        align-items: start;
+        justify-content: center;
+        top: 0;
+        gap: none;
+
+        .note-Card {
+          margin-top: 15px;
+          margin-bottom: 15px;
+        }
+      }
+    }
   }
 }

@@ -150,3 +150,17 @@ body {
   font-weight: 600;
   outline: none;
 }
+
+@media screen and (max-width: 769px) {
+  .header .head-Wrap .notes-Wrap {
+    align-items: start;
+    justify-content: center;
+    top: 0;
+    gap: none;
+  }
+
+  .header .head-Wrap .notes-Wrap .note-Card {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
