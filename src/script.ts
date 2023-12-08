@@ -23,7 +23,7 @@ let newCreatedNote: any = [
 
 // functions
 const listNotes = () => {
-  notesObject.forEach((el) => {
+  notesObject.forEach((el, index) => {
     const noteCard: Element = document.createElement("div");
     noteCard.classList.add("note-Card");
 
@@ -73,7 +73,7 @@ const listNotes = () => {
     // our edit text eventlinster
     editBtn.addEventListener("click", (e) => {
       let editNote = e.target.parentElement.parentElement.nextElementSibling;
-
+      let newText = editNote.value;
       if (editNote.readOnly) {
         console.log("read only removed");
         editNote.readOnly = false;
@@ -86,7 +86,20 @@ const listNotes = () => {
         iEl.style.removeProperty("color");
       }
 
-      editFunction(editNote);
+      if (!notesObject.some((note) => note.text === newText)) {
+        // Delete the older note
+        notesObject.splice(index, 1);
+
+        // Update the notesObject with the edited text
+        notesObject.push({
+          text: newText,
+        });
+        console.log(`notesObject object`, notesObject);
+        notesWrap.innerHTML = ``;
+        listNotes();
+      } else {
+        console.log("nothing happened");
+      }
     });
   });
 };
@@ -94,6 +107,7 @@ const listNotes = () => {
 // // delete notes from object dynamclly :
 const deleteNote = (thisTextNote) => {
   console.log("the text in delete Note", thisTextNote);
+
   notesObject = notesObject.filter(
     (note) => note.text.trim().toLowerCase() !== thisTextNote.toLowerCase()
   );
@@ -101,25 +115,28 @@ const deleteNote = (thisTextNote) => {
 };
 
 // edit function
-const editFunction = (editNote) => {
-  console.log(editNote.value);
-  editNote.addEventListener("change", () => {
-    let newText = editNote.value;
-    console.log(newText);
+// const editFunction = (editNote, beforeEditObj) => {
+//   console.log(editNote.value);
+//   editNote.addEventListener("input", () => {
+//     let newText = editNote.value;
+//     console.log(newText);
 
-    if (!notesObject.filter((el) => el.text === newText).length) {
-      let newNote = {
-        text: newText,
-      };
-      notesObject.push(newNote);
-      console.log(`object after edit`, notesObject);
-      notesWrap.innerHTML = ``;
-      listNotes();
-    } else {
-      console.log("nothing happend");
-    }
-  });
-};
+//     if (!beforeEditObj.filter((el) => el.text === newText).length) {
+//       let newNote = {
+//         text: newText,
+//       };
+//       notesObject.push(newNote);
+//       console.log(`notesObject object`, notesObject);
+//       console.log(`before object before edit `, beforeEditObj);
+//       beforeEditObj = notesObject;
+//       console.log(`before object after edit `, beforeEditObj);
+//       notesWrap.innerHTML = ``;
+//       listNotes();
+//     } else {
+//       console.log("nothing happend");
+//     }
+//   });
+// };
 
 // // createNote dynamclly
 // const createNote = () => {
