@@ -3,7 +3,7 @@ const addNoteBtn = document.getElementsByClassName("add-Note")[0];
 const notesWrap = document.getElementsByClassName("notes-Wrap")[0];
 
 // global varibales
-const notesObject = [
+let notesObject: any = [
   {
     text: "text one",
   },
@@ -48,7 +48,31 @@ const createNote = () => {
     noteTextArea.textContent = `${el.text}`;
     noteCard.appendChild(noteTextArea);
     notesWrap.appendChild(noteCard);
+
+    // our eventlinsters within the dynamic dom creating
+    deleteBtn.addEventListener("click", (e) => {
+      const thisTextNote: string =
+        e.target.parentElement.parentElement.nextElementSibling.textContent.trim();
+
+      if (thisTextNote) {
+        deleteNote(thisTextNote);
+        notesWrap.removeChild(noteCard);
+        console.log("tested in if block");
+      } else {
+        console.log("nothing here");
+      }
+      console.log("tested");
+    });
   });
+};
+
+// // delete notes from object dynamclly :
+const deleteNote = (thisTextNote) => {
+  console.log("the text in delete Note", thisTextNote);
+  notesObject = notesObject.filter(
+    (note) => note.text.trim().toLowerCase() !== thisTextNote.toLowerCase()
+  );
+  console.log(notesObject);
 };
 
 // event linsters

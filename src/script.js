@@ -39,7 +39,26 @@ var createNote = function () {
         noteTextArea.textContent = "".concat(el.text);
         noteCard.appendChild(noteTextArea);
         notesWrap.appendChild(noteCard);
+        // our eventlinsters within the dynamic dom creating
+        deleteBtn.addEventListener("click", function (e) {
+            var thisTextNote = e.target.parentElement.parentElement.nextElementSibling.textContent.trim();
+            if (thisTextNote) {
+                deleteNote(thisTextNote);
+                notesWrap.removeChild(noteCard);
+                console.log("tested in if block");
+            }
+            else {
+                console.log("nothing here");
+            }
+            console.log("tested");
+        });
     });
+};
+// // delete notes from object dynamclly :
+var deleteNote = function (thisTextNote) {
+    console.log("the text in delete Note", thisTextNote);
+    notesObject = notesObject.filter(function (note) { return note.text.trim().toLowerCase() !== thisTextNote.toLowerCase(); });
+    console.log(notesObject);
 };
 // event linsters
 addNoteBtn.addEventListener("click", createNote);
