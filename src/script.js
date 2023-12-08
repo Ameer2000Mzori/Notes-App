@@ -35,6 +35,7 @@ var createNote = function () {
         deleteBtn.appendChild(deleteIEl);
         var noteTextArea = document.createElement("textarea");
         noteTextArea.classList.add("note-Text-Area");
+        noteTextArea.setAttribute("readonly", "");
         noteTextArea.textContent = "".concat(el.text);
         noteCard.appendChild(noteTextArea);
         notesWrap.appendChild(noteCard);

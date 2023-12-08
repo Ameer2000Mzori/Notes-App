@@ -44,6 +44,7 @@ const createNote = () => {
 
     const noteTextArea = document.createElement("textarea");
     noteTextArea.classList.add("note-Text-Area");
+    noteTextArea.setAttribute("readonly", "");
     noteTextArea.textContent = `${el.text}`;
     noteCard.appendChild(noteTextArea);
     notesWrap.appendChild(noteCard);
