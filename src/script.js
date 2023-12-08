@@ -1,16 +1,16 @@
 // selecting elements
 var addNoteBtn = document.getElementsByClassName("add-Note")[0];
 var notesWrap = document.getElementsByClassName("notes-Wrap")[0];
-// global variables
+// global variables / getting data from local storage if there is
 var storageData = localStorage.getItem("notesObject");
-///__/// Ensure that notesObject is parsed from a string if it exists in localStorage.
 var notesObject = storageData ? JSON.parse(storageData) : [];
+// object data for our newly created note
 var newCreatedNote = [
     {
         text: "ADD YOUR TEXT HERE!",
     },
 ];
-// functions
+// our list Notes from local storage if there is any
 var listNotes = function () {
     notesObject.forEach(function (el, index) {
         var noteCard = document.createElement("div");
@@ -36,9 +36,9 @@ var listNotes = function () {
         noteTextArea.textContent = "".concat(el.text);
         noteCard.appendChild(noteTextArea);
         notesWrap.prepend(noteCard);
-        // our eventlinsters within the dynamic dom creating
+        // our eventlinsters within the dynamic dom creating (delete btn)
         deleteBtn.addEventListener("click", function (e) {
-            // Use el.text directly from the notesObject array
+            // getting value from objects
             var thisTextNote = el.text;
             if (thisTextNote) {
                 notesWrap.removeChild(noteCard);
@@ -51,8 +51,9 @@ var listNotes = function () {
             // Call deleteNote with the correct parameters
             deleteNote(thisTextNote, index);
         });
-        // our edit text eventlinster
+        // our eventlinsters within the dynamic dom creating (edit btn)
         editBtn.addEventListener("click", function (e) {
+            //targeting the text within the textarea
             var editNote = e.target.parentElement.parentElement.nextElementSibling;
             var newText = editNote.value;
             if (editNote.readOnly) {
@@ -85,7 +86,7 @@ var listNotes = function () {
         });
     });
 };
-// // createNote dynamclly
+// create new note function
 var createNote = function () {
     newCreatedNote.forEach(function (el, index) {
         var noteCard = document.createElement("div");

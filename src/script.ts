@@ -2,18 +2,18 @@
 const addNoteBtn = document.getElementsByClassName("add-Note")[0];
 const notesWrap = document.getElementsByClassName("notes-Wrap")[0];
 
-// global variables
+// global variables / getting data from local storage if there is
 let storageData = localStorage.getItem("notesObject");
-///__/// Ensure that notesObject is parsed from a string if it exists in localStorage.
 let notesObject = storageData ? JSON.parse(storageData) : [];
 
+// object data for our newly created note
 let newCreatedNote: any = [
   {
     text: "ADD YOUR TEXT HERE!",
   },
 ];
 
-// functions
+// our list Notes from local storage if there is any
 const listNotes = () => {
   notesObject.forEach((el, index) => {
     const noteCard: Element = document.createElement("div");
@@ -47,11 +47,10 @@ const listNotes = () => {
     noteCard.appendChild(noteTextArea);
     notesWrap.prepend(noteCard);
 
-    // our eventlinsters within the dynamic dom creating
+    // our eventlinsters within the dynamic dom creating (delete btn)
     deleteBtn.addEventListener("click", (e) => {
-      // Use el.text directly from the notesObject array
+      // getting value from objects
       const thisTextNote: string = el.text;
-
       if (thisTextNote) {
         notesWrap.removeChild(noteCard);
         console.log("tested in if block");
@@ -64,8 +63,9 @@ const listNotes = () => {
       deleteNote(thisTextNote, index);
     });
 
-    // our edit text eventlinster
+    // our eventlinsters within the dynamic dom creating (edit btn)
     editBtn.addEventListener("click", (e) => {
+      //targeting the text within the textarea
       let editNote = e.target.parentElement.parentElement.nextElementSibling;
       let newText = editNote.value;
       if (editNote.readOnly) {
@@ -99,7 +99,7 @@ const listNotes = () => {
   });
 };
 
-// // createNote dynamclly
+// create new note function
 const createNote = () => {
   newCreatedNote.forEach((el, index) => {
     const noteCard: Element = document.createElement("div");
