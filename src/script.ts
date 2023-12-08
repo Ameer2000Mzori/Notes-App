@@ -2,12 +2,10 @@
 const addNoteBtn = document.getElementsByClassName("add-Note")[0];
 const notesWrap = document.getElementsByClassName("notes-Wrap")[0];
 
-// global varibales
-let notesObject: any = [
-  {
-    text: "This Is Test Note",
-  },
-];
+// global variables
+let storageData = localStorage.getItem("notesObject");
+///__/// Ensure that notesObject is parsed from a string if it exists in localStorage.
+let notesObject = storageData ? JSON.parse(storageData) : [];
 
 let newCreatedNote: any = [
   {
@@ -51,17 +49,19 @@ const listNotes = () => {
 
     // our eventlinsters within the dynamic dom creating
     deleteBtn.addEventListener("click", (e) => {
-      const thisTextNote: string =
-        e.target.parentElement.parentElement.nextElementSibling.textContent.trim();
+      // Use el.text directly from the notesObject array
+      const thisTextNote: string = el.text;
 
       if (thisTextNote) {
-        deleteNote(thisTextNote);
         notesWrap.removeChild(noteCard);
         console.log("tested in if block");
       } else {
         console.log("nothing here");
       }
       console.log("tested");
+
+      // Call deleteNote with the correct parameters
+      deleteNote(thisTextNote, index);
     });
 
     // our edit text eventlinster
@@ -78,21 +78,22 @@ const listNotes = () => {
         editNote.readOnly = true;
         iEl.classList.replace("fa-check", "fa-pen-to-square");
         iEl.style.removeProperty("color");
-      }
 
-      if (!notesObject.some((note) => note.text === newText)) {
-        // Delete the older note
-        notesObject.splice(index, 1);
+        if (!notesObject.some((note) => note.text === newText)) {
+          // Delete the older note
+          deleteNote(el.text, index);
 
-        // Update the notesObject with the edited text
-        notesObject.push({
-          text: newText,
-        });
-        console.log(`notesObject object`, notesObject);
-        notesWrap.innerHTML = ``;
-        listNotes();
-      } else {
-        console.log("nothing happened");
+          // Update the notesObject with the edited text
+          notesObject.push({
+            text: newText,
+          });
+          notesWrap.innerHTML = ``;
+          // Update localStorage
+          localStorage.setItem("notesObject", JSON.stringify(notesObject));
+          listNotes();
+        } else {
+          console.log("nothing happened");
+        }
       }
     });
   });
@@ -134,17 +135,19 @@ const createNote = () => {
 
     // our eventlinsters within the dynamic dom creating
     deleteBtn.addEventListener("click", (e) => {
-      const thisTextNote: string =
-        e.target.parentElement.parentElement.nextElementSibling.textContent.trim();
+      // Use el.text directly from the notesObject array
+      const thisTextNote: string = el.text;
 
       if (thisTextNote) {
-        deleteNote(thisTextNote);
         notesWrap.removeChild(noteCard);
         console.log("tested in if block");
       } else {
         console.log("nothing here");
       }
       console.log("tested");
+
+      // Call deleteNote with the correct parameters
+      deleteNote(thisTextNote, index);
     });
 
     // our edit text eventlinster
@@ -161,38 +164,42 @@ const createNote = () => {
         editNote.readOnly = true;
         iEl.classList.replace("fa-check", "fa-pen-to-square");
         iEl.style.removeProperty("color");
-      }
 
-      if (!notesObject.some((note) => note.text === newText)) {
-        // Delete the older note
-        notesObject.splice(index, 1);
+        if (!notesObject.some((note) => note.text === newText)) {
+          // Delete the older note
+          deleteNote(el.text, index);
 
-        // Update the notesObject with the edited text
-        let newTexta = {
-          text: newText,
-        };
-        notesObject.push(newTexta);
-        console.log(`notesObject object`, notesObject);
-        notesWrap.innerHTML = ``;
-        listNotes();
-      } else {
-        console.log("nothing happened");
+          // Update the notesObject with the edited text
+          let newTexta = {
+            text: newText,
+          };
+          notesObject.push(newTexta);
+          console.log(`notesObject object`, notesObject);
+          notesWrap.innerHTML = ``;
+          // Update localStorage
+          localStorage.setItem("notesObject", JSON.stringify(notesObject));
+
+          listNotes();
+        } else {
+          console.log("nothing happened");
+        }
       }
     });
   });
 };
 
 // // delete notes from object dynamclly :
-const deleteNote = (thisTextNote) => {
+const deleteNote = (thisTextNote, index) => {
   console.log("the text in delete Note", thisTextNote);
 
   notesObject = notesObject.filter(
     (note) => note.text.trim().toLowerCase() !== thisTextNote.toLowerCase()
   );
   console.log(notesObject);
+  // Update localStorage
+  localStorage.setItem("notesObject", JSON.stringify(notesObject));
 };
 
 // event linsters
 addNoteBtn.addEventListener("click", createNote);
-
 listNotes();
