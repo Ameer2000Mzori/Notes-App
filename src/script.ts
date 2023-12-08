@@ -4,20 +4,20 @@ const notesWrap = document.getElementsByClassName("notes-Wrap")[0];
 
 // global variables / getting data from local storage if there is
 let storageData: string | null = localStorage.getItem("notesObject");
-let notesObject: any[];
+let notesObject: any[] = [];
 
 if (storageData) {
-  notesObject = JSON.parse(storageData);
-
-  // Filter out items with undefined text property
-  notesObject = notesObject.filter((note) => note.text !== undefined);
-} else {
-  // If storageData is null or undefined, initialize notesObject as an empty array
-  notesObject = [];
+  notesObject = JSON.parse(storageData).filter(
+    (note) => note.text !== undefined
+  );
 }
 
 // object data for our newly created note
-let newCreatedNote: string[] = ["ADD YOUR TEXT HERE!"];
+let newCreatedNote: any = [
+  {
+    text: "ADD YOUR TEXT HERE!",
+  },
+];
 
 // our list Notes from local storage if there is any
 const listNotes = () => {
@@ -105,9 +105,9 @@ const listNotes = () => {
   });
 };
 
-// create new note function
+// create new note
 const createNote = () => {
-  newCreatedNote.forEach((text, index) => {
+  newCreatedNote.forEach((el, index) => {
     const noteCard: Element = document.createElement("div");
     noteCard.classList.add("note-Card");
 
@@ -135,7 +135,7 @@ const createNote = () => {
     const noteTextArea = document.createElement("textarea");
     noteTextArea.classList.add("note-Text-Area");
     noteTextArea.setAttribute("readonly", "");
-    noteTextArea.textContent = text;
+    noteTextArea.textContent = `${el.text}`;
     noteCard.appendChild(noteTextArea);
     notesWrap.prepend(noteCard);
 

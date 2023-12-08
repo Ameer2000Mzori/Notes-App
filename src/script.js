@@ -3,18 +3,13 @@ var addNoteBtn = document.getElementsByClassName("add-Note")[0];
 var notesWrap = document.getElementsByClassName("notes-Wrap")[0];
 // global variables / getting data from local storage if there is
 var storageData = localStorage.getItem("notesObject");
-var notesObject;
-if (storageData) {
-    notesObject = JSON.parse(storageData);
-    // Filter out items with undefined text property
-    notesObject = notesObject.filter(function (note) { return note.text !== undefined; });
-}
-else {
-    // If storageData is null or undefined, initialize notesObject as an empty array
-    notesObject = [];
-}
+var notesObject = storageData ? JSON.parse(storageData) : [];
 // object data for our newly created note
-var newCreatedNote = ["ADD YOUR TEXT HERE!"];
+var newCreatedNote = [
+    {
+        text: "ADD YOUR TEXT HERE!",
+    },
+];
 // our list Notes from local storage if there is any
 var listNotes = function () {
     notesObject.forEach(function (el, index) {
@@ -91,9 +86,9 @@ var listNotes = function () {
         });
     });
 };
-// create new note function
+// create new note
 var createNote = function () {
-    newCreatedNote.forEach(function (text, index) {
+    newCreatedNote.forEach(function (el, index) {
         var noteCard = document.createElement("div");
         noteCard.classList.add("note-Card");
         var upperNoteSide = document.createElement("div");
@@ -114,7 +109,7 @@ var createNote = function () {
         var noteTextArea = document.createElement("textarea");
         noteTextArea.classList.add("note-Text-Area");
         noteTextArea.setAttribute("readonly", "");
-        noteTextArea.textContent = text;
+        noteTextArea.textContent = "".concat(el.text);
         noteCard.appendChild(noteTextArea);
         notesWrap.prepend(noteCard);
         // our eventlinsters within the dynamic dom creating
