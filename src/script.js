@@ -14,11 +14,7 @@ else {
     notesObject = [];
 }
 // object data for our newly created note
-var newCreatedNote = [
-    {
-        text: "ADD YOUR TEXT HERE!",
-    },
-];
+var newCreatedNote = ["ADD YOUR TEXT HERE!"];
 // our list Notes from local storage if there is any
 var listNotes = function () {
     notesObject.forEach(function (el, index) {
@@ -97,7 +93,7 @@ var listNotes = function () {
 };
 // create new note function
 var createNote = function () {
-    newCreatedNote.forEach(function (el, index) {
+    newCreatedNote.forEach(function (text, index) {
         var noteCard = document.createElement("div");
         noteCard.classList.add("note-Card");
         var upperNoteSide = document.createElement("div");
@@ -118,7 +114,7 @@ var createNote = function () {
         var noteTextArea = document.createElement("textarea");
         noteTextArea.classList.add("note-Text-Area");
         noteTextArea.setAttribute("readonly", "");
-        noteTextArea.textContent = "".concat(el.text);
+        noteTextArea.textContent = text;
         noteCard.appendChild(noteTextArea);
         notesWrap.prepend(noteCard);
         // our eventlinsters within the dynamic dom creating

@@ -17,11 +17,7 @@ if (storageData) {
 }
 
 // object data for our newly created note
-let newCreatedNote: any = [
-  {
-    text: "ADD YOUR TEXT HERE!",
-  },
-];
+let newCreatedNote: string[] = ["ADD YOUR TEXT HERE!"];
 
 // our list Notes from local storage if there is any
 const listNotes = () => {
@@ -111,7 +107,7 @@ const listNotes = () => {
 
 // create new note function
 const createNote = () => {
-  newCreatedNote.forEach((el, index) => {
+  newCreatedNote.forEach((text, index) => {
     const noteCard: Element = document.createElement("div");
     noteCard.classList.add("note-Card");
 
@@ -139,7 +135,7 @@ const createNote = () => {
     const noteTextArea = document.createElement("textarea");
     noteTextArea.classList.add("note-Text-Area");
     noteTextArea.setAttribute("readonly", "");
-    noteTextArea.textContent = `${el.text}`;
+    noteTextArea.textContent = text;
     noteCard.appendChild(noteTextArea);
     notesWrap.prepend(noteCard);
 
