@@ -5,13 +5,7 @@ const notesWrap = document.getElementsByClassName("notes-Wrap")[0];
 // global varibales
 let notesObject: any = [
   {
-    text: "text one",
-  },
-  {
-    text: "text two",
-  },
-  {
-    text: "text three",
+    text: "This Is Test Note",
   },
 ];
 
@@ -174,9 +168,10 @@ const createNote = () => {
         notesObject.splice(index, 1);
 
         // Update the notesObject with the edited text
-        notesObject.push({
+        let newTexta = {
           text: newText,
-        });
+        };
+        notesObject.push(newTexta);
         console.log(`notesObject object`, notesObject);
         notesWrap.innerHTML = ``;
         listNotes();
