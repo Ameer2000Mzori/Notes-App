@@ -3,8 +3,18 @@ const addNoteBtn = document.getElementsByClassName("add-Note")[0];
 const notesWrap = document.getElementsByClassName("notes-Wrap")[0];
 
 // global variables / getting data from local storage if there is
-let storageData = localStorage.getItem("notesObject");
-let notesObject = storageData ? JSON.parse(storageData) : [];
+let storageData: string | null = localStorage.getItem("notesObject");
+let notesObject: any[];
+
+if (storageData) {
+  notesObject = JSON.parse(storageData);
+
+  // Filter out items with undefined text property
+  notesObject = notesObject.filter((note) => note.text !== undefined);
+} else {
+  // If storageData is null or undefined, initialize notesObject as an empty array
+  notesObject = [];
+}
 
 // object data for our newly created note
 let newCreatedNote: any = [
