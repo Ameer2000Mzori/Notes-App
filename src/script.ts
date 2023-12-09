@@ -198,9 +198,7 @@ const createNote = () => {
 const deleteNote = (thisTextNote, index) => {
   console.log("the text in delete Note", thisTextNote);
 
-  notesObject = notesObject.filter(
-    (note) => note.text.trim().toLowerCase() !== thisTextNote.toLowerCase()
-  );
+  notesObject = notesObject.filter((note) => note.text.trim() !== thisTextNote);
   console.log(notesObject);
   // Update localStorage
   localStorage.setItem("notesObject", JSON.stringify(notesObject));

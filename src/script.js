@@ -169,7 +169,7 @@ var createNote = function () {
 // // delete notes from object dynamclly :
 var deleteNote = function (thisTextNote, index) {
     console.log("the text in delete Note", thisTextNote);
-    notesObject = notesObject.filter(function (note) { return note.text.trim().toLowerCase() !== thisTextNote.toLowerCase(); });
+    notesObject = notesObject.filter(function (note) { return note.text.trim() !== thisTextNote; });
     console.log(notesObject);
     // Update localStorage
     localStorage.setItem("notesObject", JSON.stringify(notesObject));
