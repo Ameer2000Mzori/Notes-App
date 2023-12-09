@@ -173,13 +173,6 @@ const createNote = () => {
 
         if (!notesObject.some((note) => note.text === newText)) {
           // Delete the older note
-          if (
-            notesObject.filter(
-              (note) => note.text.trim() !== undefined || "undefined"
-            )
-          ) {
-            deleteNote(el.text, index);
-          }
 
           deleteNote(el.text, index);
 
@@ -188,6 +181,11 @@ const createNote = () => {
             text: newText,
           };
           notesObject.push(newTexta);
+          if (
+            notesObject.filter((note) => note.text !== undefined || "undefined")
+          ) {
+            deleteNote(el.text, index);
+          }
           console.log(`notesObject object`, notesObject);
           notesWrap.innerHTML = ``;
           // Update localStorage
