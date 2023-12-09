@@ -3,7 +3,10 @@ var addNoteBtn = document.getElementsByClassName("add-Note")[0];
 var notesWrap = document.getElementsByClassName("notes-Wrap")[0];
 // global variables / getting data from local storage if there is
 var storageData = localStorage.getItem("notesObject");
-var notesObject = storageData ? JSON.parse(storageData) : [];
+var notesObject = [];
+if (storageData) {
+    notesObject = JSON.parse(storageData).filter(function (note) { return note.text !== undefined; });
+}
 // object data for our newly created note
 var newCreatedNote = [
     {
