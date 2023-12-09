@@ -147,6 +147,9 @@ var createNote = function () {
                 iEl.style.removeProperty("color");
                 if (!notesObject.some(function (note) { return note.text === newText; })) {
                     // Delete the older note
+                    if (notesObject.filter(function (note) { return note.text.trim() !== undefined || "undefined"; })) {
+                        deleteNote(el.text, index);
+                    }
                     deleteNote(el.text, index);
                     // Update the notesObject with the edited text
                     var newTexta = {

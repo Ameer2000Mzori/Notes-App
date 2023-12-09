@@ -173,6 +173,14 @@ const createNote = () => {
 
         if (!notesObject.some((note) => note.text === newText)) {
           // Delete the older note
+          if (
+            notesObject.filter(
+              (note) => note.text.trim() !== undefined || "undefined"
+            )
+          ) {
+            deleteNote(el.text, index);
+          }
+
           deleteNote(el.text, index);
 
           // Update the notesObject with the edited text
